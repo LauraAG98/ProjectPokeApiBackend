@@ -46,7 +46,7 @@ function getEvolutionNames(chain) {
 }
 
 //Peticiones que junta las 3 peticiones anteriores y devuelve la información de cada pokemon
-listPokemon = async () => {
+const listPokemon = async () => {
     const pokemonList = await getPokemonList();
     const pokemonSpeciesPromises = pokemonList.results.map(pok => getPokemonSpecies(pok.name));
     const pokemonSpecies = await Promise.all(pokemonSpeciesPromises);
@@ -56,7 +56,7 @@ listPokemon = async () => {
     const chainEvolutionPromises = uniqueChainUrls.map(url => getChainEvolution(url));
     const chainEvolutions = await Promise.all(chainEvolutionPromises);
 
-    const groupPromises = chainEvolitions.map(async (chainEvolution) => {
+    const groupPromises = chainEvolutions.map(async (chainEvolution) => {
         const evolutionNames = getEvolutionNames(chainEvolution);
 
         const detailsPromises = evolutionNames.map(name => getPokemonDetails(name));

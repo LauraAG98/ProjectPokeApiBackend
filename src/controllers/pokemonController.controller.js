@@ -1,6 +1,6 @@
 import { listPokemon, getPokemonDetails, getPokemonSpecies, getChainEvolution, getEvolutionNames } from '../services/pokemonService.service.js';
 
-//Funci+ón asincrónica para obtener la lista de pokemones y devolverla como respuesta
+//Función asincrónica para obtener la lista de pokemones y devolverla como respuesta
 async function getPokemonListController(req, res) {
     const pokemonList = await listPokemon();
     res.json(pokemonList);
@@ -22,17 +22,10 @@ async function getPokemonSpeciesController(req, res) {
 
 //Función asincrónica que obtiene la cadena de evolución de un pokemon por su url y devolverla como respuesta
 async function getChainEvolutionController(req, res) {
-    const { url } = req.params;
+    const { url } = req.body;
     const chainEvolution = await getChainEvolution(url);
     res.json(chainEvolution);
 }
 
-//Función que obtiene los nombres de los pokemones en la cadena de evolución y devolverlos como respuesta
-function getEvolutionNamesController(req, res) {
-    const { chain } = req.body;
-    const evolutionNames = getEvolutionNames(chain);
-    res.json(evolutionNames);
-}
-
 //Exporta las funciones para que puedan ser utilizadas en otras partes de la aplicación
-export { getPokemonListController, getPokemonDetailsController, getPokemonSpeciesController, getChainEvolutionController, getEvolutionNamesController };
+export { getPokemonListController, getPokemonDetailsController, getPokemonSpeciesController, getChainEvolutionController };
