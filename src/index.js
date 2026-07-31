@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 3000;
 //Se usan los cors para permitir solicitudes desde cualquier origen
 app.use(cors());
 
-//Rutas para peticiones a la API
+//Ruta para peticiones a la API
 
 
 //Se agrega mensaje de confirmación de que el servidor está corriendo
