@@ -1,0 +1,1 @@
+//Función asincrónica para obtener la información de un pokemon por su id o nombre
