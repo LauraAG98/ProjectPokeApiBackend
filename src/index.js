@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import { router } from './routes/pokemonRoute.route.js';
+import { error } from './middlewares/error.js';
 
 //Se carga el archivo .env
 dotenv.config();
@@ -14,6 +15,8 @@ app.use(cors());
 
 //Se usa express.json para poder recibir datos en formato JSON
 app.use(express.json());
+//Se usa middleware para el manejo de errores
+app.use(error);
 
 //Ruta para peticiones a la API
 app.use('/api', router);
