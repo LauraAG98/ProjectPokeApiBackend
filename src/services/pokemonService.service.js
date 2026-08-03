@@ -59,10 +59,14 @@ const listPokemon = async () => {
     const groupPromises = chainEvolutions.map(async (chainEvolution) => {
         const evolutionNames = getEvolutionNames(chainEvolution);
 
-        const detailsPromises = evolutionNames.map(name => getPokemonDetails(name));
-        const details = await Promise.all(detailsPromises);
+        const pokemonPromises = evolutionNames.map(async (name) => {
+            const detail = await getPokemonDetails(name);
+            const evolution = await getPokemonSpecies(name);
+            
+            return { detail, evolution };
+        });
 
-        const chainPokemons = details.map(detail => ({ detail}));
+        const chainPokemons = await Promise.all(pokemonPromises);
 
         return { chainPokemons };
     });
